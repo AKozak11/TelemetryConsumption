@@ -7,7 +7,7 @@ using System.Diagnostics;
 using System.Diagnostics.Tracing;
 using Microsoft.Extensions.Logging;
 
-namespace Yarp.Telemetry.Consumption;
+namespace Telemetry.Consumption;
 
 internal sealed class KestrelEventListenerService : EventListenerService<KestrelEventListenerService, IKestrelTelemetryConsumer, KestrelMetrics>
 {

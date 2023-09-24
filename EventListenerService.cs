@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace Yarp.Telemetry.Consumption;
+namespace Telemetry.Consumption;
 
 internal abstract class EventListenerService<TService, TTelemetryConsumer, TMetrics> : EventListener, IHostedService
     where TMetrics : class, new()
@@ -141,7 +141,7 @@ internal abstract class EventListenerService<TService, TTelemetryConsumer, TMetr
                 return;
             }
 
-            var metrics = _currentMetrics ??= new();
+            var metrics = _currentMetrics ??= new TMetrics();
 
             if (!TrySaveMetric(metrics, name, value))
             {

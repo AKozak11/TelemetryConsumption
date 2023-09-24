@@ -4,19 +4,17 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-using Yarp.Telemetry.Consumption;
+using Telemetry.Consumption;
 
 namespace Microsoft.Extensions.DependencyInjection;
 
 public static class TelemetryConsumptionExtensions
 {
     /// <summary>
-    /// Registers all telemetry listeners (Forwarder, Kestrel, Http, NameResolution, NetSecurity, Sockets and WebSockets).
+    /// Registers all telemetry listeners (Kestrel, Http, NameResolution, NetSecurity, and Sockets).
     /// </summary>
     public static IServiceCollection AddTelemetryListeners(this IServiceCollection services)
     {
-        services.AddHostedService<WebSocketsEventListenerService>();
-        services.AddHostedService<ForwarderEventListenerService>();
         services.AddHostedService<KestrelEventListenerService>();
         services.AddHostedService<HttpEventListenerService>();
         services.AddHostedService<NameResolutionEventListenerService>();
@@ -31,18 +29,6 @@ public static class TelemetryConsumptionExtensions
     public static IServiceCollection AddTelemetryConsumer(this IServiceCollection services, object consumer)
     {
         var implementsAny = false;
-
-        if (consumer is IWebSocketsTelemetryConsumer webSocketsTelemetryConsumer)
-        {
-            services.TryAddEnumerable(ServiceDescriptor.Singleton(webSocketsTelemetryConsumer));
-            implementsAny = true;
-        }
-
-        if (consumer is IForwarderTelemetryConsumer forwarderTelemetryConsumer)
-        {
-            services.TryAddEnumerable(ServiceDescriptor.Singleton(forwarderTelemetryConsumer));
-            implementsAny = true;
-        }
 
         if (consumer is IKestrelTelemetryConsumer kestrelTelemetryConsumer)
         {
@@ -91,18 +77,6 @@ public static class TelemetryConsumptionExtensions
         where TConsumer : class
     {
         var implementsAny = false;
-
-        if (typeof(IWebSocketsTelemetryConsumer).IsAssignableFrom(typeof(TConsumer)))
-        {
-            services.AddSingleton(services => (IWebSocketsTelemetryConsumer)services.GetRequiredService<TConsumer>());
-            implementsAny = true;
-        }
-
-        if (typeof(IForwarderTelemetryConsumer).IsAssignableFrom(typeof(TConsumer)))
-        {
-            services.AddSingleton(services => (IForwarderTelemetryConsumer)services.GetRequiredService<TConsumer>());
-            implementsAny = true;
-        }
 
         if (typeof(IKestrelTelemetryConsumer).IsAssignableFrom(typeof(TConsumer)))
         {
@@ -153,12 +127,6 @@ public static class TelemetryConsumptionExtensions
     {
         var implementsAny = false;
 
-        if (consumer is IMetricsConsumer<ForwarderMetrics> forwarderMetricsConsumer)
-        {
-            services.TryAddEnumerable(ServiceDescriptor.Singleton(forwarderMetricsConsumer));
-            implementsAny = true;
-        }
-
         if (consumer is IMetricsConsumer<KestrelMetrics> kestrelMetricsConsumer)
         {
             services.TryAddEnumerable(ServiceDescriptor.Singleton(kestrelMetricsConsumer));
@@ -206,12 +174,6 @@ public static class TelemetryConsumptionExtensions
         where TConsumer : class
     {
         var implementsAny = false;
-
-        if (typeof(IMetricsConsumer<ForwarderMetrics>).IsAssignableFrom(typeof(TConsumer)))
-        {
-            services.AddSingleton(services => (IMetricsConsumer<ForwarderMetrics>)services.GetRequiredService<TConsumer>());
-            implementsAny = true;
-        }
 
         if (typeof(IMetricsConsumer<KestrelMetrics>).IsAssignableFrom(typeof(TConsumer)))
         {

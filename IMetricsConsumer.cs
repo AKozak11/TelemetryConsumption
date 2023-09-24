@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-namespace Yarp.Telemetry.Consumption;
+namespace Telemetry.Consumption;
 
 /// <summary>
 /// A consumer of <typeparamref name="TMetrics"/>.

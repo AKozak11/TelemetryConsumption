@@ -3,7 +3,7 @@
 
 using System;
 
-namespace Yarp.Telemetry.Consumption;
+namespace Telemetry.Consumption;
 
 /// <summary>
 /// A consumer of Microsoft-AspNetCore-Server-Kestrel EventSource events.

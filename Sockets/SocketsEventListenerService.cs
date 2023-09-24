@@ -8,7 +8,7 @@ using System.Diagnostics.Tracing;
 using System.Net.Sockets;
 using Microsoft.Extensions.Logging;
 
-namespace Yarp.Telemetry.Consumption;
+namespace Telemetry.Consumption;
 
 internal sealed class SocketsEventListenerService : EventListenerService<SocketsEventListenerService, ISocketsTelemetryConsumer, SocketsMetrics>
 {

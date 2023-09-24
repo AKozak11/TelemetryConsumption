@@ -3,7 +3,7 @@
 
 using System;
 
-namespace Yarp.Telemetry.Consumption;
+namespace Telemetry.Consumption;
 
 internal static class MetricsOptions
 {

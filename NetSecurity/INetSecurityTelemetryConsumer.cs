@@ -4,7 +4,7 @@
 using System;
 using System.Security.Authentication;
 
-namespace Yarp.Telemetry.Consumption;
+namespace Telemetry.Consumption;
 
 /// <summary>
 /// A consumer of System.Net.Security EventSource events.

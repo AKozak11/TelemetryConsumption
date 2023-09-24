@@ -4,7 +4,7 @@
 using System;
 using System.Net.Http;
 
-namespace Yarp.Telemetry.Consumption;
+namespace Telemetry.Consumption;
 
 /// <summary>
 /// A consumer of System.Net.Http EventSource events.

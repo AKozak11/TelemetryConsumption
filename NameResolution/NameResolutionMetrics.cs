@@ -3,7 +3,7 @@
 
 using System;
 
-namespace Yarp.Telemetry.Consumption;
+namespace Telemetry.Consumption;
 
 /// <summary>
 /// Represents metrics reported by the System.Net.NameResolution event counters.

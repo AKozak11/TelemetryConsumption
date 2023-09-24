@@ -9,7 +9,7 @@ using System.Diagnostics.Tracing;
 using System.Net.Http;
 using Microsoft.Extensions.Logging;
 
-namespace Yarp.Telemetry.Consumption;
+namespace Telemetry.Consumption;
 
 internal sealed class HttpEventListenerService : EventListenerService<HttpEventListenerService, IHttpTelemetryConsumer, HttpMetrics>
 {
